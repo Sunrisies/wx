@@ -1,0 +1,11 @@
+<view class="card-item">
+  <view  class="top" >
+    <view>{{item.article_info.ctime}}</view>
+    <view>
+      {{item.tags[0].tag_name}}
+    </view>
+  </view>
+  <view>{{item.article_info.title}}</view>
+  <view class="brief_content">{{item.article_info.brief_content}}</view>
+</view>
+ 

@@ -1,0 +1,8 @@
+
+  <view class="top-container">
+    <van-icon wx:if="{{back}}" bind:click="goToBack"  name="arrow-left" />
+
+    <view class="top">
+    {{title}}</view>
+  </view>
+

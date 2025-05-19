@@ -1,0 +1,49 @@
+<view class="personal-center">
+  <!-- 用户信息区域 -->
+  <view class="user-info">
+    <button wx:if="{{!userInfo.avatarUrl}}" class="avatar-btn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <view class="default-avatar">
+        <van-icon name="user-o" size="50px" color="#999" />
+      </view>
+    </button>
+
+    <image wx:else class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+    <input wx:if="{{!userInfo.nickName}}" type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onNickNameChange" />
+    <text wx:else class="nickname">{{userInfo.nickName}}</text>
+    <button wx:if="{{!userInfo.avatarUrl}}" class="avatar-btn" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo">
+      <view class="default-avatar">
+        <van-icon name="user-o" size="50px" color="#999" />
+      </view>
+    </button>
+    <!-- 退出登录按钮 -->
+    <button class="logout-btn" bind:tap="handleLogout">
+      <van-icon name="close" size="20px" />
+      <text>退出登录</text>
+    </button>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-container">
+    <view class="stats-item">
+      <text class="number">{{blogStats.articles}}</text>
+      <text class="label">文章</text>
+    </view>
+    <view class="stats-item">
+      <text class="number">{{blogStats.likes}}</text>
+      <text class="label">获赞</text>
+    </view>
+    <view class="stats-item">
+      <text class="number">{{blogStats.comments}}</text>
+      <text class="label">评论</text>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="function-list">
+    <view class="function-item" wx:for="{{functionList}}" wx:key="text" bindtap="navigateTo" data-url="{{item.url}}">
+      <van-icon name="{{item.icon}}" size="24px" />
+      <text class="function-text">{{item.text}}</text>
+      <van-icon name="arrow" />
+    </view>
+  </view>
+</view>

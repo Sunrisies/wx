@@ -1,0 +1,71 @@
+const app = getApp(); // 应用实例
+
+Page({
+  data: {
+    pageHeight: 0,
+    scrollarea:0,
+    item:{}
+  },
+  onReady: function () {
+
+  },
+  onLoad: function(){
+    // const eventChannel = this.getOpenerEventChannel()
+    // eventChannel.on('acceptDataFromOpenerPage', ({data}) => {
+    //   this.setData({item:data});
+    // })
+  },
+  onShow() {
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('acceptDataFromOpenerPage', ({data}) => {
+      console.log(data,'data')
+      this.getArticle(data.article_id)
+      this.setData({item:data});
+    })
+
+
+    // 通过 getTabBar 接口获取组件实例，并调用 setData 更新选中态
+    try {
+      const res = wx.getSystemInfoSync()
+      this.data.pageHeight = res.windowHeight - 84
+      this.setData({
+        pageHeight: this.data.pageHeight
+      });
+      this.data.scrollarea = this.data.pageHeight - 92
+      this.setData({
+        scrollareaHeight: this.data.scrollarea
+      });
+      console.log(res.model)
+      console.log(res.pixelRatio)
+      console.log(res.windowWidth)
+      console.log(res.windowHeight)
+      console.log(res.language)
+      console.log(res.version)
+      console.log(res.platform)
+      console.log(this.data.item,'aaa')
+    } catch (e) {
+      // Do something when catch error
+    }
+    
+  },
+  getArticle(article_id:string){
+    let _self = this
+    wx.request({
+      url:'https://api.juejin.cn/content_api/v1/article/detail',
+      method:'POST',
+      data:{
+        article_id
+      },
+      success({data:res}:{data:any}){
+        let rs = res.data
+        console.log(app,'aaa')
+       rs.content =  app.towxml(res.data.article_info.mark_content,'markdown')
+       console.log(res,'rres')
+        _self.setData({item:res.data});
+      }
+    })
+  }
+
+})
+
+

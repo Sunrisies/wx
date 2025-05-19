@@ -1,0 +1,9 @@
+<view class="container" style="height: {{pageHeight}}px;">
+  <navigation-bar title="关于" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+  <view style="display: flex;justify-content: center;align-items: center;">待完善</view>
+<!-- <scroll-view class="scrollarea" style="height: {{scrollareaHeight}}px;" scroll-y>
+  <card  wx:for="{{list}}" item="{{item}}"  wx:key="index" bind:tap="goToArticle" data-item="{{item}}"></card>  
+</scroll-view> -->
+</view>
+
+

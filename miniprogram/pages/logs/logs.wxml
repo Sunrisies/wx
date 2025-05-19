@@ -1,0 +1,6 @@
+<!--logs.wxml-->
+<navigation-bar title="日志" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <button bindtap="goToHome">返回首页</button>
+ 
+</scroll-view>
