@@ -1,24 +1,55 @@
-.card-item{
-  border: 1px solid rgba(0,0,0,.3);
-  margin: 0px 20px;
-  border-radius: 30px;
-  padding: 20px 16px;
-  height: 80px;
+.custom-card {
+  margin: 24rpx 32rpx !important;
+  border-radius: 12rpx !important;
+  background-color: #fff !important;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden;
+}
+
+.custom-card .van-card__title {
+  font-size: 32rpx !important;
+  font-weight: bold !important;
+  color: #333 !important;
+  margin-bottom: 16rpx !important;
+}
+
+.custom-card .van-card__desc {
+  font-size: 28rpx !important;
+  color: #666 !important;
+  margin-bottom: 16rpx !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+}
+
+.card-tags {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 12px;
-  margin-bottom: 10px;
-  // background-image: ;
-  .top{
-    display: flex;
-    justify-content:space-between;
-  }
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 16rpx;
 }
-.brief_content{
-  width: calc(100% - 30%);
-  overflow: hidden;    
-text-overflow:ellipsis;    
-white-space: nowrap;
+
+.tag-item {
+  margin-right: 8rpx !important;
+  background-color: #f6f6f6 !important;
+  border-color: #e8e8e8 !important;
 }
-  
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 2rpx solid #f5f5f5;
+}
+
+.publish-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 添加卡片之间的间隔 */
+.custom-card + .custom-card {
+  margin-top: 32rpx !important;
+}

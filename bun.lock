@@ -1,0 +1,17 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "miniprogram-ts-less-quickstart",
+      "dependencies": {
+        "@vant/weapp": "^1.11.1",
+        "miniprogram-api-typings": "^4.0.7",
+      },
+    },
+  },
+  "packages": {
+    "@vant/weapp": ["@vant/weapp@1.11.7", "https://registry.npmmirror.com/@vant/weapp/-/weapp-1.11.7.tgz", {}, "sha512-Rwn9BBnb4kHSV4XmvBicwtd42J+amEUfnFDcXJsGNPNX4a9c/DoT6YLsm4X1wB2+sQbdiQsbFBLAvGRBxCkD8g=="],
+
+    "miniprogram-api-typings": ["miniprogram-api-typings@4.0.7", "https://registry.npmmirror.com/miniprogram-api-typings/-/miniprogram-api-typings-4.0.7.tgz", {}, "sha512-sUxqpA1+JxnDWYjO6ihiLWNJl94WzjlhnDpozfBeC+w8Mpejjsc8JuxyC3Xisimj/gp5OYaJ7nd4fM6wepzhEQ=="],
+  }
+}

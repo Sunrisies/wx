@@ -1,6 +1,5 @@
 // app.ts
 App<IAppOption>({
-  // towxml: require('./towxml/index'),
   globalData: {},
   onLaunch() {
     // 展示本地存储能力

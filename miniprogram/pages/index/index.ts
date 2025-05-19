@@ -20,7 +20,7 @@ Page({
     // 通过 getTabBar 接口获取组件实例，并调用 setData 更新选中态
     this.getTabBar().setData({ active: 0 })
     try {
-      const res = wx.getSystemInfoSync()
+      const res = wx.getWindowInfo()
       this.data.pageHeight = res.windowHeight - 84
       this.setData({
         pageHeight: this.data.pageHeight
@@ -87,26 +87,40 @@ Page({
   getList() {
     let _self = this
     wx.request({
-      url: 'https://api.juejin.cn/content_api/v1/article/query_list', //仅为示例，并非真实的接口地址
-      method: 'POST',
-      data: {
-        "cursor": "0",
-        "user_id": "2731614892986862",
-        "sort_type": 2
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+      url: 'https://api.chaoyang1024.top:2345/api/article', 
+      method: 'GET',
       success({ data: res }: { data: any }) {
-        for (let k of res.data) {
-          k.article_info.ctime = _self.dateFormat(k.article_info.ctime)
-        }
-        console.log(res.data)
+        console.log(res,'res')
+        // for (let k of res.data.data) {
+        //   k.publish_time = _self.dateFormat(k.publish_time)
+        // }
+        console.log(res.data.data)
         _self.setData({
-          list: res.data
+          list: res.data.data
         });
       }
     })
+     // wx.request({
+    //   url: 'https://api.juejin.cn/content_api/v1/article/query_list', //仅为示例，并非真实的接口地址
+    //   method: 'POST',
+    //   data: {
+    //     "cursor": "0",
+    //     "user_id": "2731614892986862",
+    //     "sort_type": 2
+    //   },
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success({ data: res }: { data: any }) {
+    //     for (let k of res.data) {
+    //       k.article_info.ctime = _self.dateFormat(k.article_info.ctime)
+    //     }
+    //     console.log(res.data)
+    //     _self.setData({
+    //       list: res.data
+    //     });
+    //   }
+    // })
   },
   dateFormat(timestamp: string) {
     var dateObj = new Date(+timestamp * 1000);

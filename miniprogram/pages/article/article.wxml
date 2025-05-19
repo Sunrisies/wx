@@ -1,7 +1,7 @@
 <view class="container" style="height: {{pageHeight}}px;">
   <navigation-bar title="文章详情页" back="{{true}}" color="black" background="#FFF"></navigation-bar>
   <view class="content-info">
-  <towxml nodes="{{item.content}}"/>
+  <towxml nodes="{{article}}"/>
 </view>
 <view class="content-botton">温馨提示:暂时不支持评论</view>
 

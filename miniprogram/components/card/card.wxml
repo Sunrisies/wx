@@ -1,11 +1,24 @@
-<view class="card-item">
-  <view  class="top" >
-    <view>{{item.article_info.ctime}}</view>
-    <view>
-      {{item.tags[0].tag_name}}
-    </view>
+<van-card
+  title="{{item.title}}"
+  desc="{{item.description}}"
+  thumb="{{item.cover}}"
+  custom-class="custom-card"
+>
+  <view slot="tags" class="card-tags">
+    <van-tag 
+      wx:for="{{item.tags}}" 
+      wx:for-item="tag" 
+      wx:key="index"
+      type="primary"
+      plain
+      size="medium"
+      custom-class="tag-item"
+    >
+      {{tag.name}}
+    </van-tag>
   </view>
-  <view>{{item.article_info.title}}</view>
-  <view class="brief_content">{{item.article_info.brief_content}}</view>
-</view>
+  <view slot="footer" class="card-footer">
+    <view class="publish-time">{{item.publish_time}}</view>
+  </view>
+</van-card>
  
