@@ -19,8 +19,8 @@ Page({
   onShow() {
 
     const eventChannel = this.getOpenerEventChannel()
-    eventChannel.on('acceptDataFromOpenerPage', ({data}) => {
-      this.getArticle(data.article_id)
+    eventChannel.on('acceptDataFromOpenerPage', ({ data }) => {
+      this.getArticle(data.id)
       this.setData({item:data});
     })
 
@@ -36,14 +36,6 @@ Page({
       this.setData({
         scrollareaHeight: this.data.scrollarea
       });
-      // console.log(res.model)
-      // console.log(res.pixelRatio)
-      // console.log(res.windowWidth)
-      // console.log(res.windowHeight)
-      // console.log(res.language)
-      // console.log(res.version)
-      // console.log(res.platform)
-      console.log(this.data.item,'aaa')
     } catch (e) {
       // Do something when catch error
     }
