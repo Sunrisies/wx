@@ -5,7 +5,8 @@
     "pages/about/about",
     "pages/personalCenter/personalCenter",
     "pages/netdisk/netdisk",
-    "pages/article/article"
+    "pages/article/article",
+    "pages/deviceControl/deviceControl"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -22,8 +23,7 @@
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
-  "usingComponents": {
-  },
+  "usingComponents": {},
   "tabBar": {
     "custom": true,
     "color": "#666666",
@@ -33,6 +33,9 @@
     "list": [
       {
         "pagePath": "pages/index/index"
+      },
+      {
+        "pagePath": "pages/deviceControl/deviceControl"
       },
       {
         "pagePath": "pages/about/about"

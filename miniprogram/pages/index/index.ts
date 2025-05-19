@@ -10,13 +10,13 @@ Page({
     // list: [
     // ],
     pageHeight: 0,
-    scrollarea:0
+    scrollarea: 0
   },
   onReady: function () {
 
   },
- async onShow() {
-  await  this.getList()
+  async onShow() {
+    await this.getList()
     // 通过 getTabBar 接口获取组件实例，并调用 setData 更新选中态
     this.getTabBar().setData({ active: 0 })
     try {
@@ -61,44 +61,44 @@ Page({
     wx.onLocationChange(_locationChangeFn)
     wx.offLocationChange(_locationChangeFn)
   },
-  goToArticle(event :any){
+  goToArticle(event: any) {
     let item = event.currentTarget.dataset.item
-    console.log(item,'item')
+    console.log(item, 'item')
     const queryString = Object.keys(item).map(key => `${key}=${item[key]}`).join('&');
-    console.log(queryString,'q11')
-    wx.navigateTo({  
-      url: `/pages/article/article`, 
+    console.log(queryString, 'q11')
+    wx.navigateTo({
+      url: `/pages/article/article`,
       events: {
         // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-        acceptDataFromOpenedPage: function(data:any) {
+        acceptDataFromOpenedPage: function (data: any) {
           console.log(data)
         },
-        someEvent: function(data:any) {
+        someEvent: function (data: any) {
           console.log(data)
         }
       },
-      success: function(res) {
+      success: function (res) {
         // 通过eventChannel向被打开页面传送数据
         res.eventChannel.emit('acceptDataFromOpenerPage', { data: item })
       }
-    // 拼接带参数的URL  
-    }); 
+      // 拼接带参数的URL  
+    });
   },
-  getList(){
+  getList() {
     let _self = this
     wx.request({
       url: 'https://api.juejin.cn/content_api/v1/article/query_list', //仅为示例，并非真实的接口地址
-      method:'POST',
+      method: 'POST',
       data: {
-          "cursor":"0",
-          "user_id":"2731614892986862",
-          "sort_type":2
+        "cursor": "0",
+        "user_id": "2731614892986862",
+        "sort_type": 2
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success ({data:res}:{data:any}) {
-        for(let k of res.data){
+      success({ data: res }: { data: any }) {
+        for (let k of res.data) {
           k.article_info.ctime = _self.dateFormat(k.article_info.ctime)
         }
         console.log(res.data)
@@ -108,7 +108,7 @@ Page({
       }
     })
   },
-  dateFormat(timestamp:string) {
+  dateFormat(timestamp: string) {
     var dateObj = new Date(+timestamp * 1000);
     var year = dateObj.getFullYear();
     var month = dateObj.getMonth() + 1;

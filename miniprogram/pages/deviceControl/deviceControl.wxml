@@ -1,0 +1,38 @@
+<view class="device-control" style="height: {{pageHeight}}px;">
+<navigation-bar title="控制面板" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+  <!-- 连接状态 -->
+  <view class="status-bar">
+    <van-icon name="{{connected ? 'success' : 'warning'}}" color="{{connected ? '#07c160' : '#ee0a24'}}" />
+    <text>{{connected ? '已连接' : '未连接'}}</text>
+  </view>
+
+  <!-- 设备状态显示 -->
+  <view class="status-panel">
+    <view class="status-item">
+      <text class="label">温度</text>
+      <text class="value">{{deviceStatus.temperature}}°C</text>
+    </view>
+    <view class="status-item">
+      <text class="label">湿度</text>
+      <text class="value">{{deviceStatus.humidity}}%</text>
+    </view>
+    <view class="status-item">
+      <text class="label">照明</text>
+      <switch checked="{{deviceStatus.light}}" bindchange="sendControl" data-topic="device/light/control" />
+    </view>
+  </view>
+
+  <!-- 控制面板 -->
+  <view class="control-panel">
+    <block wx:for="{{deviceControls}}" wx:key="topic">
+      <view class="control-item">
+        <text>{{item.name}}</text>
+        <switch wx:if="{{item.type === 'switch'}}"
+          checked="{{item.value}}"
+          data-topic="{{item.topic}}"
+          bindchange="sendControl"
+        />
+      </view>
+    </block>
+  </view>
+</view>

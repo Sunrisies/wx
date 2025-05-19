@@ -1,0 +1,62 @@
+.device-control {
+  padding: 20rpx;
+
+  .status-bar {
+    display: flex;
+    align-items: center;
+    padding: 20rpx;
+    background: #fff;
+    border-radius: 10rpx;
+    margin-bottom: 20rpx;
+
+    van-icon {
+      margin-right: 10rpx;
+    }
+  }
+
+  .status-panel {
+    background: #fff;
+    border-radius: 10rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20rpx 0;
+      border-bottom: 1rpx solid #eee;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .label {
+        color: #666;
+      }
+
+      .value {
+        font-size: 32rpx;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .control-panel {
+    background: #fff;
+    border-radius: 10rpx;
+    padding: 20rpx;
+
+    .control-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20rpx 0;
+      border-bottom: 1rpx solid #eee;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
