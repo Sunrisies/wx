@@ -1,6 +1,6 @@
 {
   "description": "项目配置文件",
-  "miniprogramRoot": "miniprogram/",
+  "miniprogramRoot": "sunrise/",
   "compileType": "miniprogram",
   "setting": {
     "useCompilerPlugins": [
@@ -20,8 +20,8 @@
     "packNpmManually": true,
     "packNpmRelationList": [
       {
-        "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "./"
+        "packageJsonPath": "./sunrise/package.json",
+        "miniprogramNpmDistDir": "./sunrise/"
       }
     ],
     "ignoreUploadUnusedFiles": false,

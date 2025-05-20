@@ -12,3 +12,4 @@ $RECYCLE.BIN/
 .env
 # Node.js
 node_modules/
+miniprogram_npm/

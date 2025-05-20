@@ -1,0 +1,18 @@
+{
+  "name": "miniprogram",
+  "version": "1.0.0",
+  "author": "",
+  "main": "index.js",
+  "dependencies": {
+    "@vant/weapp": "^1.11.1",
+    "miniprogram-api-typings": "^4.0.7"
+  },
+  "description": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "mqtt": "^5.13.0"
+  }
+}
