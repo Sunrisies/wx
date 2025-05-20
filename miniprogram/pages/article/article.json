@@ -2,6 +2,6 @@
   "component": true,
   "usingComponents": {
     "navigation-bar": "/components/navigation-bar/navigation-bar",
-    "towxml": "../../towxml/towxml"
+    "towxml": "/components/towxml/towxml"
   }
 }

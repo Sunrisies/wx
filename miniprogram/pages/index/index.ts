@@ -64,8 +64,7 @@ Page({
   goToArticle(event: any) {
     let item = event.currentTarget.dataset.item
     console.log(item, 'item')
-    const queryString = Object.keys(item).map(key => `${key}=${item[key]}`).join('&');
-    console.log(queryString, 'q11')
+    // const queryString = Object.keys(item).map(key => `${key}=${item[key]}`).join('&');
     wx.navigateTo({
       url: `/pages/article/article`,
       events: {
@@ -87,10 +86,10 @@ Page({
   getList() {
     let _self = this
     wx.request({
-      url: 'https://api.chaoyang1024.top:2345/api/article', 
+      url: 'https://api.chaoyang1024.top:2345/api/article',
       method: 'GET',
       success({ data: res }: { data: any }) {
-        console.log(res,'res')
+        console.log(res, 'res')
         // for (let k of res.data.data) {
         //   k.publish_time = _self.dateFormat(k.publish_time)
         // }
@@ -100,7 +99,7 @@ Page({
         });
       }
     })
-     // wx.request({
+    // wx.request({
     //   url: 'https://api.juejin.cn/content_api/v1/article/query_list', //仅为示例，并非真实的接口地址
     //   method: 'POST',
     //   data: {

@@ -1,27 +1,29 @@
+// const towxml = require('../../towxml/index');
+// import * as mqtt from '../../utils/index.js'
 const towxml = require('../../towxml/index');
-
 Page({
   data: {
     pageHeight: 0,
-    scrollarea:0,
+    scrollarea: 0,
     item: {},
-    article:{}
+    article: {}
   },
   onReady: function () {
 
   },
   onLoad: function () {
+    console.log(towxml, 'mqtt')
     // const eventChannel = this.getOpenerEventChannel()
     // eventChannel.on('acceptDataFromOpenerPage', ({data}) => {
     //   this.setData({item:data});
     // })
   },
   onShow() {
-
+    console.log(towxml, 'towxml')
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', ({ data }) => {
       this.getArticle(data.id)
-      this.setData({item:data});
+      this.setData({ item: data });
     })
 
 
@@ -39,15 +41,17 @@ Page({
     } catch (e) {
       // Do something when catch error
     }
-    
+
   },
   getArticle(article_id: string) {
     let _self = this
     wx.request({
-      url:`https://api.chaoyang1024.top:2345/api/article/${article_id}`,
-      method:'GET',
-      success({data:res}:{data:any}){
-       const result =  towxml(res.data.content,'markdown')
+      url: `https://api.chaoyang1024.top:2345/api/article/${article_id}`,
+      method: 'GET',
+      success({ data: res }: { data: any }) {
+        console.log(res, 'res')
+        const result = towxml(res.data.content, 'markdown')
+        console.log(result, 'result')
         _self.setData({
           article: result
         });
