@@ -1,7 +1,5 @@
 import * as mqtt from '../../utils/mqtt.min.js'
 import { ClientSubscribeCallback, MqttClient } from 'mqtt'
-// const mqtt = require('mqtt/dist/mqtt.min.js')
-// import * as mqtt from 'mqtt'
 Page({
     data: {
         client: null as MqttClient | null,

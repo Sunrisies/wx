@@ -1,16 +1,13 @@
-// index.ts
-
-import { LightSchema } from "XrFrame/components"
-
-// 获取应用实例
-const app = getApp<IAppOption>()
-
 Page({
   data: {
-    // list: [
-    // ],
     pageHeight: 0,
-    scrollarea: 0
+    scrollarea: 0,
+    list: [] as any[],
+    loading: false,
+    page: 1,
+    total: 0,
+    pageSize: 10,// 假设每页10条数据，根据
+    hasMore: true
   },
   onReady: function () {
 
@@ -83,70 +80,59 @@ Page({
       // 拼接带参数的URL  
     });
   },
-  getList() {
-    let _self = this
+  async getList() {
+    if (this.data.loading) return;
+    if (this.data.list.length >= this.data.total && this.data.total !== 0) {
+      return;
+    }
+
+    this.setData({ loading: true });
+    let _self = this;
+
     wx.request({
-      url: 'https://api.chaoyang1024.top/api/article',
+      url: `https://api.chaoyang1024.top/api/article?page=${this.data.page}`,
       method: 'GET',
       success({ data: res }: { data: any }) {
-        console.log(res, 'res')
-        // 提示获取到数据
-        wx.showToast({
-          title: '获取数据成功',
-          icon: 'success',
-          duration: 2000
-        })
-        // for (let k of res.data.data) {
-        //   k.publish_time = _self.dateFormat(k.publish_time)
-        // }
-        console.log(res.data.data)
-        _self.setData({
-          list: res.data.data
+        res.data.data.forEach((item: any) => {
+          item.publish_time = _self.dateFormat(item.publish_time);
         });
-      },
-      fail(res: any) {
-        console.log(res)
-        // 提示获取数据失败
-        wx.showToast({
-          title: `${JSON.stringify(res)}`,
-          icon: 'error',
-          duration: 2000
-        })
-      }
-    })
-    // wx.request({
-    //   url: 'https://api.juejin.cn/content_api/v1/article/query_list', //仅为示例，并非真实的接口地址
-    //   method: 'POST',
-    //   data: {
-    //     "cursor": "0",
-    //     "user_id": "2731614892986862",
-    //     "sort_type": 2
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success({ data: res }: { data: any }) {
-    //     for (let k of res.data) {
-    //       k.article_info.ctime = _self.dateFormat(k.article_info.ctime)
-    //     }
-    //     console.log(res.data)
-    //     _self.setData({
-    //       list: res.data
-    //     });
-    //   }
-    // })
-  },
-  dateFormat(timestamp: string) {
-    var dateObj = new Date(+timestamp * 1000);
-    var year = dateObj.getFullYear();
-    var month = dateObj.getMonth() + 1;
-    var day = dateObj.getDate();
-    var hour = dateObj.getHours();
-    var minute = dateObj.getMinutes();
-    var second = dateObj.getSeconds();
-    return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
-  }
+        const newList = res.data.data || [];
+        _self.setData({
+          list: [..._self.data.list, ...newList],
+          page: _self.data.page + 1,
+          total: res.data.pagination.total || 0
+        });
 
-})
+        if (newList.length > 0) {
+          wx.showToast({
+            title: '获取数据成功',
+            icon: 'success',
+            duration: 2000
+          });
+        }
+      },
+      complete() {
+        _self.setData({ loading: false });
+      }
+    });
+  },
+
+  loadMore() {
+    if (!this.data.loading) {
+      this.getList();
+    }
+  },
+
+  dateFormat(timestamp: Date) {
+    const dateObj = new Date(timestamp);
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const hour = String(dateObj.getHours()).padStart(2, '0');
+    const minute = String(dateObj.getMinutes()).padStart(2, '0');
+    const second = String(dateObj.getSeconds()).padStart(2, '0');
+    return `${year}年${month}月${day}日 ${hour}:${minute}:${second}`;
+  }
+});
 
 

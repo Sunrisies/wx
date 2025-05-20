@@ -1,6 +1,21 @@
 <view class="container" style="height: {{pageHeight}}px;">
   <navigation-bar title="首页" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-  <scroll-view class="scrollarea" style="height: {{scrollareaHeight}}px;" scroll-y>
+  <scroll-view 
+    class="scrollarea" 
+    style="height: {{scrollareaHeight}}px;" 
+    scroll-y
+    bindscrolltolower="loadMore"
+    lower-threshold="50"
+  >
     <card wx:for="{{list}}" item="{{item}}" wx:key="index" bind:tap="goToArticle" data-item="{{item}}"></card>
+    <view class="loading" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text>加载中...</text>
+    </view>
+    <view class="no-more" wx:if="{{list.length >= total && total !== 0}}">
+      <view class="no-more-line"></view>
+      <text class="no-more-text">没有更多内容了</text>
+      <view class="no-more-line"></view>
+    </view>
   </scroll-view>
 </view>
