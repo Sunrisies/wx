@@ -6,7 +6,7 @@ Page({
    */
   data: {
     pageHeight: 0,
-    scrollarea:0
+    scrollarea: 0
   },
 
   /**
@@ -27,9 +27,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getTabBar().setData({ active: 1 })
-    
-    
     try {
       const res = wx.getSystemInfoSync()
       this.data.pageHeight = res.windowHeight - 84

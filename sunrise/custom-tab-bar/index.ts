@@ -1,7 +1,7 @@
 interface Obje {
   detail: number
 }
-Page({
+Component({
 
   /**
    * 页面的初始数据
@@ -17,7 +17,7 @@ Page({
       {
         "url": "/pages/deviceControl/deviceControl",
         "text": "控制设备",
-        "iconPath": "friends-o"
+        "iconPath": "setting-o"
       },
       {
         "url": "/pages/about/about",
@@ -37,81 +37,46 @@ Page({
     ]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
-    console.log(2111)
-    wx.request({
-      //这里的url用的是新视觉实训的一个测试接口
-      url: 'https://edu.newsight.cn/wxList.php',
-      //success是接口调用成功的回调函数,这里习惯用res去接收返回值
-      success: res => {
-        console.log(res, 'res')
-      }
-    })
+
+
+  methods: {
+    goToHome() {
+      wx.navigateTo({
+        url: '/pages/index/index'
+      })
+    },
+    onChange(event: Obje) {
+      console.log(this.data.list[event.detail].url, '跳转')
+      const index = event.detail;
+      wx.switchTab({
+        url: this.data.list[index].url
+      });
+      wx.setStorageSync('tabBarActiveIndex', +index);
+      // 点击之后添加高亮
+      this.setData({
+        active: event.detail
+      })
+    },
+    init() {
+      console.log(1111)
+      // 从本地存储获取激活状态
+      const activeIndex = +wx.getStorageSync('tabBarActiveIndex') || 0;
+      console.log(activeIndex, 'activeIndex')
+      this.setData({
+        active: activeIndex
+      });
+    },
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  lifetimes: {
+    attached() {
+      this.init();
+    },
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
-
-
-  goToHome() {
-    wx.navigateTo({
-      url: '/pages/index/index'
-    })
-  },
-  onChange(event: Obje) {
-    console.log(this.data.list[event.detail].url, '跳转')
-    wx.switchTab({
-      url: this.data.list[event.detail].url
-    });
-  },
-
+  pageLifetimes: {
+    show() {
+      this.init(); // 每次页面显示时重新同步状态
+    }
+  }
 })

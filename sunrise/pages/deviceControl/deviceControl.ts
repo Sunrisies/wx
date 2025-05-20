@@ -25,8 +25,6 @@ Page({
     },
 
     async onShow() {
-        // 通过 getTabBar 接口获取组件实例，并调用 setData 更新选中态
-        this.getTabBar().setData({ active: 0 })
         try {
             const res = wx.getWindowInfo()
             console.log(res, '0100101010')
