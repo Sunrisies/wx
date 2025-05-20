@@ -53,5 +53,5 @@
     "ignore": [],
     "include": []
   },
-  "appid": "wx17be3d7b683427b2"
+  "appid": "${MINIPROGRAM_APPID}"
 }

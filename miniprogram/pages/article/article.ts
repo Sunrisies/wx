@@ -1,5 +1,3 @@
-// const towxml = require('../../towxml/index');
-// import * as mqtt from '../../utils/index.js'
 const towxml = require('../../utils/index');
 Page({
   data: {
@@ -12,11 +10,6 @@ Page({
 
   },
   onLoad: function () {
-    console.log(towxml, 'mqtt')
-    // const eventChannel = this.getOpenerEventChannel()
-    // eventChannel.on('acceptDataFromOpenerPage', ({data}) => {
-    //   this.setData({item:data});
-    // })
   },
   onShow() {
     console.log(towxml, 'towxml')
@@ -25,9 +18,6 @@ Page({
       this.getArticle(data.id)
       this.setData({ item: data });
     })
-
-
-    // 通过 getTabBar 接口获取组件实例，并调用 setData 更新选中态
     try {
       const res = wx.getWindowInfo()
       this.data.pageHeight = res.windowHeight - 84
@@ -39,7 +29,6 @@ Page({
         scrollareaHeight: this.data.scrollarea
       });
     } catch (e) {
-      // Do something when catch error
     }
 
   },
