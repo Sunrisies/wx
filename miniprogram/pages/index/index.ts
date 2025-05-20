@@ -86,10 +86,16 @@ Page({
   getList() {
     let _self = this
     wx.request({
-      url: 'https://api.chaoyang1024.top:2345/api/article',
+      url: 'https://api.chaoyang1024.top/api/article',
       method: 'GET',
       success({ data: res }: { data: any }) {
         console.log(res, 'res')
+        // 提示获取到数据
+        wx.showToast({
+          title: '获取数据成功',
+          icon: 'success',
+          duration: 2000
+        })
         // for (let k of res.data.data) {
         //   k.publish_time = _self.dateFormat(k.publish_time)
         // }
@@ -97,6 +103,15 @@ Page({
         _self.setData({
           list: res.data.data
         });
+      },
+      fail(res: any) {
+        console.log(res)
+        // 提示获取数据失败
+        wx.showToast({
+          title: `${JSON.stringify(res)}`,
+          icon: 'error',
+          duration: 2000
+        })
       }
     })
     // wx.request({

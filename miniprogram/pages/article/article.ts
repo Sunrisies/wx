@@ -1,6 +1,6 @@
 // const towxml = require('../../towxml/index');
 // import * as mqtt from '../../utils/index.js'
-const towxml = require('../../towxml/index');
+const towxml = require('../../utils/index');
 Page({
   data: {
     pageHeight: 0,
@@ -46,7 +46,7 @@ Page({
   getArticle(article_id: string) {
     let _self = this
     wx.request({
-      url: `https://api.chaoyang1024.top:2345/api/article/${article_id}`,
+      url: `https://api.chaoyang1024.top/api/article/${article_id}`,
       method: 'GET',
       success({ data: res }: { data: any }) {
         console.log(res, 'res')
