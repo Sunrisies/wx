@@ -1,4 +1,5 @@
-const towxml = require('../../utils/index');
+// const towxml = require('../../utils/index');
+import towxml = require('../../miniprogram_npm/sunrise-towxml/index')
 Page({
   data: {
     pageHeight: 0,

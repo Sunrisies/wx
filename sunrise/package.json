@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@vant/weapp": "^1.11.1",
-    "miniprogram-api-typings": "^4.0.7"
+    "miniprogram-api-typings": "^4.0.7",
+    "sunrise-towxml": "^3.3.3"
   },
   "description": "",
   "license": "ISC",
